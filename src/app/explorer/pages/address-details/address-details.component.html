@@ -65,14 +65,14 @@
             <ng-template #sentAction>
               <a [routerLink]="['/explorer', 'address', transaction.to]" class="transaction-action-link">
                 <div class="transaction-action">
-                  <span class="text-truncate"> Sent to {{ transaction.to }}</span>
+                  <span class="text-truncate"><span class="bold text-uppercase">TO</span> {{ transaction.to }}</span>
                 </div>
               </a>
             </ng-template>
             <ng-template #receivedAction>
               <a [routerLink]="['/explorer', 'address', transaction.from]" class="transaction-action-link">
                 <div class="transaction-action">
-                  <span class="text-truncate">Received to {{ transaction.to }}</span>
+                  <span class="text-truncate"><span class="bold text-uppercase">FROM</span> {{ transaction.from }}</span>
                 </div>
               </a>
             </ng-template>
