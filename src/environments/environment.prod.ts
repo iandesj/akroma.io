@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://api.akroma.io',
+  apiUrl: 'https://akroma.azurewebsites.net',
 };
