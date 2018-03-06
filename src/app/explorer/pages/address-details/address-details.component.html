@@ -44,12 +44,12 @@
         </div>
       </div>
     </div>
-    <ng-container *ngIf="addressTransactions">
+    <ng-container *ngIf="addressTransactions$ | async as addressTransactions">
       <div class="row">
-          <div class="col">
-            <pagination [totalItems]="addressTransactions.totalTransactions" [maxSize]="6" class="pagination-sm" [(ngModel)]="currentPage" [itemsPerPage]="20"
-            [boundaryLinks]="true" [rotate]="false" (pageChanged)="pageAddressTransactions($event)" (numPages)="numPages = addressTransactions.totalPages"></pagination>
-          </div>
+        <div class="col">
+          <pagination class="pagination-sm" [totalItems]="addressTransactions.totalTransactions" [maxSize]="6" [(ngModel)]="currentPage"
+            [itemsPerPage]="20" [boundaryLinks]="true" [rotate]="false" (pageChanged)="pageAddressTransactions($event)" (numPages)="numPages = addressTransactions.totalPages"></pagination>
+        </div>
       </div>
       <div class="row">
         <div class="col">
@@ -72,14 +72,16 @@
               <ng-template #sentAction>
                 <a [routerLink]="['/explorer', 'address', transaction.to]" class="transaction-action-link">
                   <div class="transaction-action">
-                    <span class="text-truncate"><span class="bold text-uppercase">TO</span> {{ transaction.to }}</span>
+                    <span class="text-truncate">
+                      <span class="bold text-uppercase">TO</span> {{ transaction.to }}</span>
                   </div>
                 </a>
               </ng-template>
               <ng-template #receivedAction>
                 <a [routerLink]="['/explorer', 'address', transaction.from]" class="transaction-action-link">
                   <div class="transaction-action">
-                    <span class="text-truncate"><span class="bold text-uppercase">FROM</span> {{ transaction.from }}</span>
+                    <span class="text-truncate">
+                      <span class="bold text-uppercase">FROM</span> {{ transaction.from }}</span>
                   </div>
                 </a>
               </ng-template>
@@ -94,11 +96,10 @@
         </div>
       </div>
       <div class="row">
-          <div class="col">
-            {{ addressTransactions }}
-            <pagination [totalItems]="addressTransactions.totalTransactions" [maxSize]="6" class="pagination-sm" [ngModel]="currentPage" [itemsPerPage]="20"
-            [boundaryLinks]="true" [rotate]="false" (pageChanged)="pageAddressTransactions($event)" (numPages)="numPages = addressTransactions.totalPages"></pagination>
-          </div>
+        <div class="col">
+          <pagination class="pagination-sm" [totalItems]="addressTransactions.totalTransactions" [maxSize]="6" [(ngModel)]="currentPage"
+            [itemsPerPage]="20" [boundaryLinks]="true" [rotate]="false" (pageChanged)="pageAddressTransactions($event)" (numPages)="numPages = addressTransactions.totalPages"></pagination>
+        </div>
       </div>
     </ng-container>
   </div>

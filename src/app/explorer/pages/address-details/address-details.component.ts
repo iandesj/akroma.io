@@ -29,21 +29,18 @@ export class AddressDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.address$ = this.store.select(getSelectedAddress);
-    this.pageAddressTransactions({ page: 1 });
-    // this.address$.subscribe(
-    //   (response: Address) => {
-    //     this.pageAddressTransactions({ page: 1 });
-    //   },
-    // ).unsubscribe();
+    this.route.params.subscribe(params => {
+      this.address$ = this.store.select(getSelectedAddress);
+      this.pageAddressTransactions({ init: true, page: 1 });
+    });
   }
 
   pageAddressTransactions(event: any) {
-    this.addressesService.getAddressTransactions(this.route.snapshot.params.addressHash, event.page - 1)
-    .subscribe((result: AddressTransactions) => {
-      this.addressTransactions = { ...result };
-      this.currentPage = result.currentPage + 1;
-      this.ref.markForCheck();
-    });
+    // guard to prevent excess firing
+    if (this.currentPage === event.page && !event.init) {
+      return;
+    }
+    this.addressTransactions$ = this.addressesService.getAddressTransactions(this.route.snapshot.params.addressHash, event.page - 1);
+    this.currentPage = event.page;
   }
 }
