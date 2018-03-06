@@ -1,4 +1,9 @@
-import { Component  } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+import { Price } from '../../models/price';
+import { PriceService } from '../../services/price.service';
+
 
 type Panel = 'blocks' | 'transactions';
 
@@ -6,9 +11,20 @@ type Panel = 'blocks' | 'transactions';
   selector: 'app-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OverviewComponent {
+export class OverviewComponent implements OnInit {
   private activePanel: Panel = 'blocks';
+  price$: Observable<Price[]>;
+
+  constructor(
+    private priceService: PriceService,
+  ) { }
+
+  ngOnInit() {
+    this.price$ = this.priceService.getCurrentPrice();
+    console.log(this.price$);
+  }
 
   get isBlocksPanelActive() {
     return this.activePanel === 'blocks';

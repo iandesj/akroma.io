@@ -2,8 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-4">
+         
         <div class="info d-flex align-items-baseline px-2">
-          000.00
+            <ng-container *ngIf="price$ | async as price">
+              {{ price[0].usd }}
+            </ng-container>
           <span class="unit-of-measure">USD</span>
         </div>
         <div class="py-1 px-2 text-uppercase type">
