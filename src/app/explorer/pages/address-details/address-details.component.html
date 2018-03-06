@@ -44,19 +44,14 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <ng-container *ngIf="addressTransactions$ | async as addressTransactions">
-        <div class="col">
-          <div class="row">
-            <button *ngIf="addressTransactions.currentPage > 0" (click)="pageNextAddressTransactions(address.hash, addressTransactions.currentPage - 1)">
-              Previous
-            </button>
-            <button (click)="pageNextAddressTransactions(address.hash, addressTransactions.currentPage + 1)">
-              Next
-            </button>
-            Page {{ addressTransactions.currentPage + 1 }} of {{ addressTransactions.totalPages + 1 }}
+    <ng-container *ngIf="addressTransactions">
+      <div class="row">
+          <div class="col">
+            <pagination [totalItems]="addressTransactions.totalTransactions" [maxSize]="6" class="pagination-sm" [(ngModel)]="currentPage" [itemsPerPage]="20"
+            [boundaryLinks]="true" [rotate]="false" (pageChanged)="pageAddressTransactions($event)" (numPages)="numPages = addressTransactions.totalPages"></pagination>
           </div>
-        </div>
+      </div>
+      <div class="row">
         <div class="col">
           <div *ngFor="let transaction of addressTransactions.transactions">
             <div class="transaction-grid">
@@ -97,7 +92,14 @@
             </div>
           </div>
         </div>
-      </ng-container>
-    </div>
+      </div>
+      <div class="row">
+          <div class="col">
+            {{ addressTransactions }}
+            <pagination [totalItems]="addressTransactions.totalTransactions" [maxSize]="6" class="pagination-sm" [ngModel]="currentPage" [itemsPerPage]="20"
+            [boundaryLinks]="true" [rotate]="false" (pageChanged)="pageAddressTransactions($event)" (numPages)="numPages = addressTransactions.totalPages"></pagination>
+          </div>
+      </div>
+    </ng-container>
   </div>
 </ng-container>

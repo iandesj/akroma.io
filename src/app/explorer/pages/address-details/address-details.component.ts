@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
@@ -17,22 +18,32 @@ import { getSelectedAddress } from '../../state/selectors/addresses.selectors';
 export class AddressDetailsComponent implements OnInit {
   address$: Observable<Address>;
   addressTransactions$: Observable<AddressTransactions>;
+  addressTransactions: AddressTransactions;
+  currentPage = 1;
 
   constructor(
+    private route: ActivatedRoute,
     private store: Store<State>,
     private addressesService: AddressesService,
+    private ref: ChangeDetectorRef,
   ) { }
 
   ngOnInit() {
     this.address$ = this.store.select(getSelectedAddress);
-    this.address$.subscribe(
-      (response: Address) => {
-        this.pageNextAddressTransactions(response.hash);
-      },
-    );
+    this.pageAddressTransactions({ page: 1 });
+    // this.address$.subscribe(
+    //   (response: Address) => {
+    //     this.pageAddressTransactions({ page: 1 });
+    //   },
+    // ).unsubscribe();
   }
 
-  pageNextAddressTransactions(address: string, page: number = 0) {
-    this.addressTransactions$ = this.addressesService.getAddressTransactions(address, page);
+  pageAddressTransactions(event: any) {
+    this.addressesService.getAddressTransactions(this.route.snapshot.params.addressHash, event.page - 1)
+    .subscribe((result: AddressTransactions) => {
+      this.addressTransactions = { ...result };
+      this.currentPage = result.currentPage + 1;
+      this.ref.markForCheck();
+    });
   }
 }
