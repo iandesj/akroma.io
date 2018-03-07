@@ -19,6 +19,7 @@ import { HexToAsciiPipe } from './pipes/hex-to-ascii.pipe';
 import { UnixTimestampToDatePipe } from './pipes/unix-timestamp-to-date.pipe';
 import { AddressesService } from './services/addresses.service';
 import { BlocksService } from './services/blocks.service';
+import { NetworkService } from './services/network.service';
 import { PriceService } from './services/price.service';
 import { TransactionsService } from './services/transactions.service';
 import { BlocksEffects } from './state/effects/blocks.effects';
@@ -49,6 +50,7 @@ import { reducers } from './state/reducers';
   ],
   providers: [
     BlocksService,
+    NetworkService,
     PriceService,
     TransactionsService,
     AddressesService,
