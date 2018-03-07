@@ -48,7 +48,7 @@
       <div class="row">
         <div class="col">
           <pagination class="pagination-sm" [totalItems]="addressTransactions.totalTransactions" [maxSize]="6" [(ngModel)]="currentPage"
-            [itemsPerPage]="20" [boundaryLinks]="true" [rotate]="false" (pageChanged)="pageAddressTransactions($event)" (numPages)="numPages = addressTransactions.totalPages"></pagination>
+            previousText="<" nextText=">" [itemsPerPage]="20" [rotate]="false" (pageChanged)="pageAddressTransactions($event)" (numPages)="numPages = addressTransactions.totalPages"></pagination>
         </div>
       </div>
       <div class="row">
@@ -98,7 +98,7 @@
       <div class="row">
         <div class="col">
           <pagination class="pagination-sm" [totalItems]="addressTransactions.totalTransactions" [maxSize]="6" [(ngModel)]="currentPage"
-            [itemsPerPage]="20" [boundaryLinks]="true" [rotate]="false" (pageChanged)="pageAddressTransactions($event)" (numPages)="numPages = addressTransactions.totalPages"></pagination>
+            previousText="<" nextText=">" [itemsPerPage]="20" [rotate]="false" (pageChanged)="pageAddressTransactions($event)" (numPages)="numPages = addressTransactions.totalPages"></pagination>
         </div>
       </div>
     </ng-container>

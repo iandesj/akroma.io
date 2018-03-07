@@ -226,3 +226,19 @@ a:hover {
 .bold {
   font-weight: 700;
 }
+
+:host ::ng-deep ul.pagination li.page-item a.page-link {
+  background-color: #f4f4f4;
+  border-color: #f4f4f4;
+  border-radius: 0;
+  color: #333333;
+  font-weight: 600;
+  text-align: center;
+  width: 35px;
+}
+
+:host ::ng-deep ul.pagination li.active a.page-link {
+  background-color: #9B9B9B;
+  border-color: #9B9B9B;
+  color: #4A4A4A;
+}
