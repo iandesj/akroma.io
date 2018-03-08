@@ -5,6 +5,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { HttpClient } from '@angular/common/http';
 
+import { NetworkService } from '../../../explorer/services/network.service';
 import { PriceService } from '../../../explorer/services/price.service';
 
 import { OverviewComponent } from './overview.component';
@@ -24,6 +25,7 @@ describe('OverviewComponent', () => {
           OverviewComponent,
         ],
         providers: [
+          NetworkService,
           PriceService,
         ],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],

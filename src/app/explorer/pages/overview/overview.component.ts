@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
+import { Network } from '../../models/network';
 import { Price } from '../../models/price';
+import { NetworkService } from '../../services/network.service';
 import { PriceService } from '../../services/price.service';
 
 
@@ -16,14 +18,16 @@ type Panel = 'blocks' | 'transactions';
 export class OverviewComponent implements OnInit {
   private activePanel: Panel = 'blocks';
   price$: Observable<Price[]>;
+  network$: Observable<Network>;
 
   constructor(
     private priceService: PriceService,
+    private networkService: NetworkService,
   ) { }
 
   ngOnInit() {
     this.price$ = this.priceService.getCurrentPrice();
-    console.log(this.price$);
+    this.network$ = this.networkService.getNetworkStats();
   }
 
   get isBlocksPanelActive() {
