@@ -232,7 +232,7 @@ a:hover {
   border-color: #f4f4f4;
   border-radius: 0;
   color: #333333;
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
   width: 35px;
 }
@@ -241,4 +241,15 @@ a:hover {
   background-color: #9B9B9B;
   border-color: #9B9B9B;
   color: #4A4A4A;
+}
+
+:host ::ng-deep ul.pagination li.pagination-prev a.page-link,
+:host ::ng-deep ul.pagination li.pagination-next a.page-link {
+  background-image: url('../../../../assets/images/icon-arrow-left.svg');
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+:host ::ng-deep ul.pagination li.pagination-next a.page-link {
+  transform: rotate(180deg);
 }
