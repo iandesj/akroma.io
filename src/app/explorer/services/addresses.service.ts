@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../environments/environment';
 import { Address } from '../models/address';
 import { AddressTransactions } from '../models/address-transactions';
-import { Transaction } from '../models/transaction';
 
 @Injectable()
 export class AddressesService {
