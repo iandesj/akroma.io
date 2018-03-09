@@ -44,47 +44,63 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <div *ngFor="let transaction of address.transactions">
-          <div class="transaction-grid">
-            <div class="transaction-icon">
-              <img *ngIf="transaction.from === address.hash; else receivedIcon" src="../../../../assets/images/icon-sent.svg" alt="Sent">
-              <ng-template #receivedIcon>
-                <img src="../../../../assets/images/icon-received.svg" alt="Received">
-              </ng-template>
-            </div>
-            <a [routerLink]="['/explorer', 'transaction', transaction.hash]" class="transaction-hash-link">
-              <div class="transaction-hash">
-                <span class="text-truncate">
-                  {{ transaction.hash }}
-                </span>
+    <ng-container *ngIf="addressTransactions$ | async as addressTransactions">
+      <div class="row">
+        <div class="col">
+          <pagination class="pagination-sm" [totalItems]="addressTransactions.totalTransactions" [maxSize]="6" [(ngModel)]="currentPage"
+            previousText="&nbsp;" nextText="&nbsp;" [itemsPerPage]="20" [rotate]="false" (pageChanged)="pageAddressTransactions($event)" (numPages)="numPages = addressTransactions.totalPages"></pagination>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div *ngFor="let transaction of addressTransactions.transactions">
+            <div class="transaction-grid">
+              <div class="transaction-icon">
+                <img *ngIf="transaction.from === address.hash; else receivedIcon" src="../../../../assets/images/icon-sent.svg" alt="Sent">
+                <ng-template #receivedIcon>
+                  <img src="../../../../assets/images/icon-received.svg" alt="Received">
+                </ng-template>
               </div>
-            </a>
-            <ng-template *ngIf="transaction.from === address.hash; then sentAction; else receivedAction"></ng-template>
-            <ng-template #sentAction>
-              <a [routerLink]="['/explorer', 'address', transaction.to]" class="transaction-action-link">
-                <div class="transaction-action">
-                  <span class="text-truncate"><span class="bold text-uppercase">TO</span> {{ transaction.to }}</span>
+              <a [routerLink]="['/explorer', 'transaction', transaction.hash]" class="transaction-hash-link">
+                <div class="transaction-hash">
+                  <span class="text-truncate">
+                    {{ transaction.hash }}
+                  </span>
                 </div>
               </a>
-            </ng-template>
-            <ng-template #receivedAction>
-              <a [routerLink]="['/explorer', 'address', transaction.from]" class="transaction-action-link">
-                <div class="transaction-action">
-                  <span class="text-truncate"><span class="bold text-uppercase">FROM</span> {{ transaction.from }}</span>
-                </div>
-              </a>
-            </ng-template>
-            <div class="transaction-value">
-              {{ transaction.value | number:'1.0-5' }} AKA
-            </div>
-            <div class="transaction-timestamp">
-              {{ transaction.timestamp | unixTimestampToDate | date:'yyyy-MM-dd HH:mm:ss' }}
+              <ng-template *ngIf="transaction.from === address.hash; then sentAction; else receivedAction"></ng-template>
+              <ng-template #sentAction>
+                <a [routerLink]="['/explorer', 'address', transaction.to]" class="transaction-action-link">
+                  <div class="transaction-action">
+                    <span class="text-truncate">
+                      <span class="bold text-uppercase">TO</span> {{ transaction.to }}</span>
+                  </div>
+                </a>
+              </ng-template>
+              <ng-template #receivedAction>
+                <a [routerLink]="['/explorer', 'address', transaction.from]" class="transaction-action-link">
+                  <div class="transaction-action">
+                    <span class="text-truncate">
+                      <span class="bold text-uppercase">FROM</span> {{ transaction.from }}</span>
+                  </div>
+                </a>
+              </ng-template>
+              <div class="transaction-value">
+                {{ transaction.value | number:'1.0-5' }} AKA
+              </div>
+              <div class="transaction-timestamp">
+                {{ transaction.timestamp | unixTimestampToDate | date:'yyyy-MM-dd HH:mm:ss' }}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="col">
+          <pagination class="pagination-sm" [totalItems]="addressTransactions.totalTransactions" [maxSize]="6" [(ngModel)]="currentPage"
+            previousText="&nbsp;" nextText="&nbsp;" [itemsPerPage]="20" [rotate]="false" (pageChanged)="pageAddressTransactions($event)" (numPages)="numPages = addressTransactions.totalPages"></pagination>
+        </div>
+      </div>
+    </ng-container>
   </div>
 </ng-container>

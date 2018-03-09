@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { PaginationModule } from 'ngx-bootstrap';
 
 import { BlockOverviewComponent } from './components/block-overview/block-overview.component';
 import { BlocksPanelComponent } from './components/blocks-panel/blocks-panel.component';
@@ -35,6 +37,8 @@ import { reducers } from './state/reducers';
       TransactionsEffects,
     ]),
     ExplorerRoutingModule,
+    PaginationModule.forRoot(),
+    FormsModule,
   ],
   declarations: [
     OverviewComponent,
