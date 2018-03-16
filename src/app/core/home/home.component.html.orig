@@ -226,6 +226,7 @@
                 <a href="http://akroma.cryptowarlords.net/">akroma.cryptowarlords.net</a>
               </td>
             </tr>
+<<<<<<< HEAD
             <tr>
               <td>
                 <a href="https://aikapool.com">https://aikapool.com</a>
@@ -233,6 +234,8 @@
               <td class="text-right text-nowrap">
               </td>
             </tr>
+=======
+>>>>>>> master
           </tbody>
         </table>
       </div>
