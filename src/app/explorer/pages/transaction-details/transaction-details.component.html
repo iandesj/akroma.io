@@ -57,6 +57,21 @@
           </div>
 
           <div class="icon">
+            <img src="../../../../assets/images/icon-height.svg" alt="Confirmations">
+          </div>
+          <div class="property">
+            Confirmations
+          </div>
+          <div class="value">
+            <ng-container *ngIf="networkStats$ | async as network">
+              <span *ngIf="network.height < transaction.blockNumber; else confirmationWithCount">0 Confirmation(s)</span>
+              <ng-template #confirmationWithCount>
+                <span>{{ network.height - transaction.blockNumber }} Confirmation(s)</span>
+              </ng-template>
+            </ng-container>
+          </div>
+
+          <div class="icon">
             <img src="../../../../assets/images/icon-value.svg" alt="Value">
           </div>
           <div class="property">
