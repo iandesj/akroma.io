@@ -2,13 +2,18 @@
   <div class="background">
     <div class="container">
       <div class="row">
-        <div class="col mb-3">
+        <div class="col-12 col-md-8">
           <div class="address">
             {{ address.hash }}
           </div>
         </div>
+        <div class="col-12 col-md-4">
+          <div class="qrcode">
+            <app-address-qrcode [hash]="address.hash"></app-address-qrcode>
+          </div>
+        </div>
       </div>
-      <div class="row">
+      <div class="row mt-3">
         <div class="col-12 col-md-6">
           <div class="info d-flex align-items-baseline px-2">
             {{ address.balance }}

@@ -84,14 +84,14 @@
       "check-else",
       "check-whitespace"
     ],
-    "ordered-imports": [
-      true,
-      {
-        "import-sources-order": "lowercase-last",
-        "named-imports-order": "lowercase-last",
-        "grouped-imports": true
-      }
-    ],
+    // "ordered-imports": [
+    //   true,
+    //   {
+    //     "import-sources-order": "lowercase-last",
+    //     "named-imports-order": "lowercase-last",
+    //     "grouped-imports": true
+    //   }
+    //],
     "prefer-const": true,
     "quotemark": [
       true,
