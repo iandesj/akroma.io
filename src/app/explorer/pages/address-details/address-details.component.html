@@ -47,12 +47,6 @@
     <ng-container *ngIf="addressTransactions$ | async as addressTransactions">
       <div class="row">
         <div class="col">
-          <pagination class="pagination-sm" [totalItems]="addressTransactions.totalTransactions" [maxSize]="6" [(ngModel)]="currentPage"
-            previousText="&nbsp;" nextText="&nbsp;" [itemsPerPage]="20" [rotate]="false" (pageChanged)="pageAddressTransactions($event)" (numPages)="numPages = addressTransactions.totalPages"></pagination>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
           <div *ngFor="let transaction of addressTransactions.transactions">
             <div class="transaction-grid">
               <div class="transaction-icon">
@@ -97,8 +91,10 @@
       </div>
       <div class="row">
         <div class="col">
-          <pagination class="pagination-sm" [totalItems]="addressTransactions.totalTransactions" [maxSize]="6" [(ngModel)]="currentPage"
-            previousText="&nbsp;" nextText="&nbsp;" [itemsPerPage]="20" [rotate]="false" (pageChanged)="pageAddressTransactions($event)" (numPages)="numPages = addressTransactions.totalPages"></pagination>
+          <ng-container *ngIf="addressTransactions.totalPages > 1">
+            <pagination class="pagination-sm" [totalItems]="addressTransactions.totalTransactions" [maxSize]="6" [(ngModel)]="currentPage"
+              previousText="&nbsp;" nextText="&nbsp;" [itemsPerPage]="20" [rotate]="false" (pageChanged)="pageAddressTransactions($event)" (numPages)="numPages = addressTransactions.totalPages"></pagination>
+          </ng-container>
         </div>
       </div>
     </ng-container>
