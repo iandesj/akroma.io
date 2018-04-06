@@ -1,0 +1,14 @@
+.akromaModal {
+    > div.modal-content {
+        border-radius:0 !important;
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+}
+
+.qr-link {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color:#fff;
+    background-color: transparent;
+    text-decoration: underline;
+}

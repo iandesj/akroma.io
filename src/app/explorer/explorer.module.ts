@@ -3,8 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { PaginationModule } from 'ngx-bootstrap';
+import { ModalModule, PaginationModule } from 'ngx-bootstrap';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
+import { AddressQrcodeComponent } from './components/address-qrcode/address-qrcode.component';
 import { BlockOverviewComponent } from './components/block-overview/block-overview.component';
 import { BlocksPanelComponent } from './components/blocks-panel/blocks-panel.component';
 import { TransactionOverviewComponent } from './components/transaction-overview/transaction-overview.component';
@@ -38,11 +40,14 @@ import { reducers } from './state/reducers';
     ]),
     ExplorerRoutingModule,
     PaginationModule.forRoot(),
+    ModalModule.forRoot(),
     FormsModule,
+    NgxQRCodeModule,
   ],
   declarations: [
     OverviewComponent,
     BlocksPanelComponent,
+    AddressQrcodeComponent,
     TransactionsPanelComponent,
     BlockOverviewComponent,
     TransactionOverviewComponent,

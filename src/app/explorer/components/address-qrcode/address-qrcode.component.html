@@ -1,0 +1,9 @@
+<button type="button" class="btn qr-link" (click)="openModal(template)">QR</button>
+ 
+<ng-template #template>
+  <div class="modal-body text-center">
+    <ngx-qrcode [qrc-element-type]="elementType" [qrc-value]="hash"></ngx-qrcode>
+    <code>{{ hash }}</code>
+  </div>
+</ng-template>
+
